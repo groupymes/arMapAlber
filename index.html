@@ -33,6 +33,27 @@
             transform: translateX(-50%);
             width: 100%;
         }
+        .mindar-ui-overlay.mindar-ui-loading {
+            background-image: url('./walpGPYM.png') !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-size: 60% !important;
+            border: none !important;
+            box-shadow: none !important;
+            /* Si quieres agregar texto, puedes usar ::before */
+        }
+        .mindar-ui-overlay.mindar-ui-loading::before {
+            content: "Pulsa en "Permitir" para poder abrir la cámara";
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Inter', sans-serif !important;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+        }
     </style>
 
 </head>
