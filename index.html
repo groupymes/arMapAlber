@@ -80,11 +80,14 @@
 <script>
     document.addEventListener('click', () => {
         const video = document.querySelector('#avatarModel');
+        const preview = document.querySelector('#previewImage');
         if (video.paused) {
             video.play();
         }
         video.muted = false;
         video.volume = 1.0;
+        preview.setAttribute('visible', 'false');
+        video.setAttribute('visible', 'true');
     });
     /*document.addEventListener('click', () => {
         const video = document.querySelector('#avatarModel');
