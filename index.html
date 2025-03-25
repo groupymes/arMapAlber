@@ -79,27 +79,12 @@
 
 <script>
     document.addEventListener('click', () => {
-        const video = document.querySelector('#avatarVideo');
-        const preview = document.querySelector('#previewImage');
-        
-        // Debug log to check current state
-        console.log('Preview visible:', preview.object3D.visible);
-        
-        // If the preview is visible, hide it and play the video
-        if (preview.object3D.visible) {
-            preview.object3D.visible = false;
-            video.object3D.visible = true;
+        const video = document.querySelector('#avatarModel');
+        if (video.paused) {
             video.play();
-            video.muted = false;
-            video.volume = 1.0;
-        } else {
-            // Otherwise, toggle play/pause on the video
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
         }
+        video.muted = false;
+        video.volume = 1.0;
     });
 </script>
 
