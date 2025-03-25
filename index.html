@@ -78,15 +78,30 @@
 </a-scene>
 
 <script>
-    document.addEventListener('click', () => {
-        const video = document.querySelector('#avatarModel');
-        if (video.paused) {
-            video.play();
-        }
-        video.muted = false;
-        video.volume = 1.0;
-    });
-</script>
+  // Track whether the preview image is currently active
+  let previewActive = true;
 
+  document.addEventListener('click', () => {
+    const video = document.querySelector('#avatarVideo');
+    const preview = document.querySelector('#previewImage');
+
+    if (previewActive) {
+      // Hide the preview and show/play the video on the first click
+      preview.setAttribute('visible', 'false');
+      video.setAttribute('visible', 'true');
+      video.play();
+      video.muted = false;
+      video.volume = 1.0;
+      previewActive = false;
+    } else {
+      // Toggle play/pause on subsequent clicks
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+  });
+</script>
 </body>
 </html>
