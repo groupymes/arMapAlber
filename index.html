@@ -81,21 +81,13 @@
     document.addEventListener('click', () => {
         const video = document.querySelector('#avatarVideo');
         const preview = document.querySelector('#previewImage');
-        // If the preview image is still visible (initial state), hide it and play the video
-        if (preview.getAttribute('visible') === 'true' || preview.getAttribute('visible') === null) {
-            preview.setAttribute('visible', 'false');
-            video.setAttribute('visible', 'true');
+        if (video.paused) {
             video.play();
-            video.muted = false;
-            video.volume = 1.0;
-        } else {
-            // Otherwise, toggle play/pause on the video
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
         }
+        video.muted = false;
+        video.volume = 1.0;
+        //preview.setAttribute('visible', 'false');
+        //video.setAttribute('visible', 'true');
     });
 </script>
 
