@@ -43,7 +43,7 @@
             /* Si quieres agregar texto, puedes usar ::before */
         }
         .mindar-ui-overlay.mindar-ui-loading::before {
-            content: "Pulsa en "Permitir" para poder abrir la cámara";
+            content: "Pulsa en \"Permitir\" para poder abrir la cámara";
             color: white;
             text-align: center;
             font-size: 18px;
@@ -69,35 +69,34 @@
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    
+
     <a-entity mindar-image-target="targetIndex: 0">
-        <!-- Plano de prueba, con color para diferenciarlo -->
-        <a-plane color="#00FF00" width="1" height="0.5" position="0 0 0.1"></a-plane>
-        <!-- Tu video original -->
-        <a-video src="#avatarModel" width="1" height="0.5" position="0 0 0.1"></a-video>
+        <a-image id="previewImage" src="./preview.png" width="1" height="0.5" position="0 0 0.1"></a-image>
+        <a-video id="avatarVideo" src="#avatarModel" width="1" height="0.5" position="0 0 0.1" visible="false"></a-video>
     </a-entity>
 
 </a-scene>
 
 <script>
     document.addEventListener('click', () => {
-        const video = document.querySelector('#avatarModel');
-        if (video.paused) {
+        const video = document.querySelector('#avatarVideo');
+        const preview = document.querySelector('#previewImage');
+        // If the preview image is still visible (initial state), hide it and play the video
+        if (preview.getAttribute('visible') === 'true' || preview.getAttribute('visible') === null) {
+            preview.setAttribute('visible', 'false');
+            video.setAttribute('visible', 'true');
             video.play();
+            video.muted = false;
+            video.volume = 1.0;
+        } else {
+            // Otherwise, toggle play/pause on the video
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
         }
-        video.muted = false;
-        video.volume = 1.0;
     });
-    /*document.addEventListener('click', () => {
-        const video = document.querySelector('#avatarModel');
-        if (video.play){
-            video.pause();
-        }
-        video.muted = false;
-        video.volume = 1.0;
-    });*/
-
-
 </script>
 
 </body>
