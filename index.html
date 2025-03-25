@@ -82,23 +82,24 @@
   let previewActive = true;
 
   document.addEventListener('click', () => {
-    const video = document.querySelector('#avatarVideo');
+    const videoAsset = document.querySelector('#avatarModel'); // Elemento <video> real en <a-assets>
+    const videoEl = document.querySelector('#avatarVideo'); // El contenedor a-video en la escena
     const preview = document.querySelector('#previewImage');
 
     if (previewActive) {
       // Hide the preview and show/play the video on the first click
       preview.setAttribute('visible', 'false');
-      video.setAttribute('visible', 'true');
-      video.play();
-      video.muted = false;
-      video.volume = 1.0;
+      videoEl.setAttribute('visible', 'true');
+      videoAsset.play();
+      videoAsset.muted = false;
+      videoAsset.volume = 1.0;
       previewActive = false;
     } else {
       // Toggle play/pause on subsequent clicks
-      if (video.paused) {
-        video.play();
+      if (videoAsset.paused) {
+        videoAsset.play();
       } else {
-        video.pause();
+        videoAsset.pause();
       }
     }
   });
